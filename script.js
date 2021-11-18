@@ -5,9 +5,10 @@ main();
 async function main() {
     console.log('Extension [Vkanek] executed...');
 
+    let content;
+
     try {
-        let text = await loadContent("https://google.com");
-        console.log(text);
+        content = await loadContent("https://anekdot.ru/random/anekdot");
     } catch(e) {
         console.log(e);
     }
@@ -22,6 +23,15 @@ async function loadContent(url) {
         throw new HttpStatusError(response.status);
     }
 }
+
+function parseContent(content, selector) {
+    let element = document.createElement("div");
+    element.innerHTML = content;
+
+    let elements = element.querySelectorAll(selector);
+
+    return Array.from(elements).map(x => x.textContent);
+} 
 
 class HttpStatusError extends Error {
     constructor(status) {

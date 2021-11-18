@@ -1,0 +1,18 @@
+{
+
+    "manifest_version": 2,
+    "name": "Vkanek",
+    "version": "1.0",
+  
+    "description": "Adds random anekdots from https://anekdot.ru to the vk.com sideboard",
+
+    "permissions": ["*://*.anekdot.ru/*"],
+
+    "content_scripts": [
+      {
+        "matches": ["*://*.google.com/*"],
+        "js": ["script.js"]
+      }
+    ]
+  
+  }
