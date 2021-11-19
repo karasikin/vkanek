@@ -7,8 +7,13 @@ async function main() {
 
     try {
         let content = await loadContent("https://anekdot.ru/random/anekdot");
+        
         removeOldSidebar();
         addContentToPage(parseContent(content, "div.text"));
+        resizeSideBar();
+
+        addEventListener("resize", resizeSideBar);
+
     } catch(e) {
         console.log(e);
     }
@@ -70,6 +75,19 @@ function createSeparator(text) {
     separator.innerText = text;
 
     return separator;
+}
+
+function resizeSideBar() {
+    let pageLayout = document.getElementById("page_layout");
+    let sidebar = document.getElementById("vkanek-sidebar");
+
+    let sidebarStyle = getComputedStyle(sidebar);
+
+    let offsetLeft = pageLayout.offsetLeft;
+    let left = parseInt(sidebarStyle.left, 10);
+    let width = offsetLeft - 3 * left;
+
+    sidebar.style.width = width + "px";
 }
 
 class HttpStatusError extends Error {
