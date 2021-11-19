@@ -36,9 +36,13 @@ function addContentToPage(content) {
     let sidebar = createSidebar();
 
     for(let text of content) {
-        let div = document.createElement('div');
+        let separator = createSeparator("***");
 
-        div.innerHTML = text;
+        let div = document.createElement("div");
+        div.classList.add("vkanek-anek-content");
+        div.innerText = text;
+
+        sidebar.appendChild(separator);
         sidebar.appendChild(div);
     }
 
@@ -47,14 +51,18 @@ function addContentToPage(content) {
 
 function createSidebar() {
     let sidebar = document.createElement("div");
-
-    sidebar.style.position = "absolute";
-    sidebar.style.width = "200px";
-    sidebar.style.left = "10px";
-    sidebar.style.top = "40px";
-    /* sidebar settings... */
+    sidebar.id = "vkanek-sidebar";
 
     return sidebar;
+}
+
+function createSeparator(text) {
+    let separator = document.createElement("div");
+    separator.classList.add("vkanek-anek-separator");
+
+    separator.innerText = text;
+
+    return separator;
 }
 
 class HttpStatusError extends Error {

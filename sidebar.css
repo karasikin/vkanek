@@ -1,0 +1,12 @@
+div#vkanek-sidebar {
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    width: 200px;
+}
+
+div.vkanek-anek-separator {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
