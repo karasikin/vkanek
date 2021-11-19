@@ -7,6 +7,7 @@ async function main() {
 
     try {
         let content = await loadContent("https://anekdot.ru/random/anekdot");
+        removeOldSidebar();
         addContentToPage(parseContent(content, "div.text"));
     } catch(e) {
         console.log(e);
@@ -47,6 +48,12 @@ function addContentToPage(content) {
     }
 
     document.body.appendChild(sidebar);
+}
+
+function removeOldSidebar() {
+    let sidebar = document.getElementById("vkanek-sidebar");
+
+    sidebar?.remove();
 }
 
 function createSidebar() {
